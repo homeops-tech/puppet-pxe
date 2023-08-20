@@ -12,6 +12,7 @@ class pxe (
   class { 'pxe::syslinux':
     tftp_root        => $tftp_root,
     syslinux_version => $syslinux_version,
+    syslinux_major_version => $syslinux_major_version,
   }
   if $tools {
     include pxe::tools
