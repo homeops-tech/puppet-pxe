@@ -4,9 +4,6 @@ class pxe::syslinux::direct (
   String[1] $syslinux_dir,
   String[1] $syslinux_version,
 ) {
-  if $syslinux_dir =~ /syslinux-([0-9.]+)$/ {
-    $syslinux_version = $1
-  }
   file { $syslinux_dir:
     ensure => directory;
   }
