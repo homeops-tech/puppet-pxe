@@ -3,21 +3,21 @@
 # Adds the memtest image to the menu
 #
 class pxe::tools::memtest (
-  $url = 'http://www.memtest.org/download/4.20/memtest86+-4.20.bin.gz',
+  $url = 'https://www.memtest.org/download/v6.20/mt86plus_6.20.binaries.zip',
   $tftp_root = $pxe::tftp_root
 ) {
-  archive { "${tftp_root}/tools/memtest86+-4.20.bin.gz":
+  archive { "${tftp_root}/tools/mt86plus_6.20.binaries.zip":
     ensure       => present,
     source       => $url,
     extract      => true,
     extract_path => "${tftp_root}/tools",
-    creates      => "${tftp_root}/tools/memtest86+-4.20.bin",
+    creates      => "${tftp_root}/tools/memtest32.bin",
     require      => Class['Pxe::Tools'];
   }
   file { "${tftp_root}/tools/memtest86+":
     ensure  => link,
-    target  => "${tftp_root}/tools/memtest86+-4.20.bin",
-    require => Archive["${tftp_root}/tools/memtest86+-4.20.bin.gz"];
+    target  => "${tftp_root}/tools/memtest32.bin",
+    require => Archive["${tftp_root}/tools/mt86plus_6.20.binaries.zip"];
   }
 
   # Create the menu entry
