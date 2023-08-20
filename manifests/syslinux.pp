@@ -12,7 +12,7 @@ class pxe::syslinux (
       tftp_root    => $tftp_root,
     }
   } elsif $syslinux_version =~ /^([0-9]+)\./ {
-    $syslinux_major_version = $1
+    $syslinux_major_version = split($syslinux_version, '.')[0]
     class { 'pxe::syslinux::direct':
       syslinux_dir     => "/usr/local/src/syslinux-${syslinux_version}",
       syslinux_archive => "https://www.kernel.org/pub/linux/utils/boot/syslinux/${syslinux_major_version}.xx/syslinux-${syslinux_version}.tar.gz",
