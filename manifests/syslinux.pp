@@ -13,7 +13,7 @@ class pxe::syslinux (
     }
   } elsif $syslinux_version =~ /^([0-9]+)\./ {
     $syslinux_version_parsed = split($syslinux_version, '.')
-    $syslinux_major_version = $syslinux_version_parsed[0]
+    $syslinux_major_version = $syslinux_version_parsed[1]
 
     class { 'pxe::syslinux::direct':
       syslinux_dir     => "/usr/local/src/syslinux-${syslinux_version}",
